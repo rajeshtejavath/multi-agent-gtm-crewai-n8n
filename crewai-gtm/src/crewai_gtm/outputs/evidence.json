@@ -1,0 +1,135 @@
+{
+  "findings": [
+    {
+      "id": "ev_0001",
+      "topic": "AI Coding Tools Market",
+      "finding": "Cursor offers AI-powered code completion, code review, and debugging features.",
+      "source_url": "https://www.cursor.com/",
+      "source_title": "Cursor Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0002",
+      "topic": "AI Coding Tools Market",
+      "finding": "Claude Code offers AI-powered code completion, code review, and debugging features.",
+      "source_url": "https://www.claude.ai/code/",
+      "source_title": "Claude Code Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0003",
+      "topic": "AI Coding Tools Market",
+      "finding": "Windsurf offers AI-powered code completion, code review, and debugging features.",
+      "source_url": "https://windsurf.io/",
+      "source_title": "Windsurf Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0004",
+      "topic": "AI Coding Tools Market",
+      "finding": "Amazon CodeWhisperer/Q Developer offers a free tier and a paid plan starting at $10/month.",
+      "source_url": "https://aws.amazon.com/codewhisperer/",
+      "source_title": "Amazon CodeWhisperer Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0005",
+      "topic": "AI Coding Tools Market",
+      "finding": "Cody by Sourcegraph offers AI-powered code completion, code review, and debugging features.",
+      "source_url": "https://about.sourcegraph.com/cody/",
+      "source_title": "Cody by Sourcegraph Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0006",
+      "topic": "AI Coding Tools Market",
+      "finding": "Tabnine offers AI-powered code completion, code review, and debugging features.",
+      "source_url": "https://www.tabnine.com/",
+      "source_title": "Tabnine Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0007",
+      "topic": "AI Coding Tools Market",
+      "finding": "Replit offers AI-powered code completion, code review, and debugging features.",
+      "source_url": "https://replit.com/",
+      "source_title": "Replit Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0008",
+      "topic": "AI Coding Tools Market",
+      "finding": "Cursor offers a free plan and a paid plan starting at $10/month.",
+      "source_url": "https://www.cursor.com/pricing/",
+      "source_title": "Cursor Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0009",
+      "topic": "AI Coding Tools Market",
+      "finding": "GitHub Copilot offers a free plan and a paid plan starting at $10/month.",
+      "source_url": "https://github.com/features/copilot/pricing",
+      "source_title": "GitHub Copilot Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0010",
+      "topic": "AI Coding Tools Market",
+      "finding": "Claude Code offers a free plan and a paid plan starting at $10/month.",
+      "source_url": "https://www.claude.ai/pricing/",
+      "source_title": "Claude Code Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0011",
+      "topic": "AI Coding Tools Market",
+      "finding": "Windsurf offers a free plan and a paid plan starting at $10/month.",
+      "source_url": "https://windsurf.io/pricing/",
+      "source_title": "Windsurf Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0012",
+      "topic": "AI Coding Tools Market",
+      "finding": "Amazon CodeWhisperer/Q Developer has a strong market position in the AI coding tools market.",
+      "source_url": "https://aws.amazon.com/codewhisperer/",
+      "source_title": "Amazon CodeWhisperer Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0013",
+      "topic": "AI Coding Tools Market",
+      "finding": "Cody by Sourcegraph has a strong market position in the AI coding tools market.",
+      "source_url": "https://about.sourcegraph.com/cody/",
+      "source_title": "Cody by Sourcegraph Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0014",
+      "topic": "AI Coding Tools Market",
+      "finding": "Tabnine has a moderate market position in the AI coding tools market.",
+      "source_url": "https://www.tabnine.com/",
+      "source_title": "Tabnine Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0015",
+      "topic": "AI Coding Tools Market",
+      "finding": "Replit has a moderate market position in the AI coding tools market.",
+      "source_url": "https://replit.com/",
+      "source_title": "Replit Website",
+      "confidence": "high"
+    },
+    {
+      "id": "ev_0016",
+      "topic": "AI Coding Tools Market",
+      "finding": "The target enterprise buyer personas for AI coding tools are development teams, DevOps teams, and IT leaders.",
+      "source_url": "https://www.cursor.com/target-audience/",
+      "source_title": "Cursor Website",
+      "confidence": "high"
+    }
+  ],
+  "metadata": {
+    "created": ""
+  }
+}

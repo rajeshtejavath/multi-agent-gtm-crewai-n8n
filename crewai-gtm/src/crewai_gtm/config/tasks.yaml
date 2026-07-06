@@ -1,0 +1,77 @@
+planning_task:
+  description: >
+    Analyze the following project brief and create a structured research plan:
+
+    Brief: {project_brief}
+
+    Your output must include:
+    1. A list of 8-12 specific research questions to investigate
+    2. A list of competitors to analyze (minimum 5)
+    3. The analytical frameworks to apply (SWOT, 4P/7P, Porter's Five Forces, etc.)
+    4. Key data points needed (market size, growth rate, pricing, features)
+  expected_output: >
+    A structured JSON research plan with fields: research_questions (array),
+    competitors (array with name and category), frameworks (array),
+    key_metrics (array)
+
+research_task:
+  description: >
+    Execute the research plan by searching for evidence on each research question.
+
+    Research Plan: {research_plan}
+
+    For EACH research question:
+    1. Search the web for relevant information
+    2. Visit and scrape the most promising results
+    3. Save each finding with proper citation (source URL, title, confidence level)
+
+    Ensure minimum 3 sources per research question. Prioritize:
+    - Official product websites and documentation
+    - Industry analyst reports (Gartner, Forrester, G2)
+    - Reputable tech publications (TechCrunch, The Verge, Ars Technica)
+    - GitHub repositories and changelogs
+  expected_output: >
+    A comprehensive evidence collection in JSON format with all findings
+    organized by topic, each with source URLs and confidence ratings.
+
+analysis_task:
+  description: >
+    Analyze the research evidence and create structured frameworks:
+
+    Evidence: {research_evidence}
+    Competitors: {competitors}
+
+    Create the following:
+    1. Competitor comparison matrix (features, pricing, target market, strengths, weaknesses)
+    2. Pricing matrix with tiers and feature breakdowns
+    3. SWOT analysis for the market opportunity
+    4. Market sizing estimate (TAM, SAM, SOM)
+    5. Key trends and market dynamics
+  expected_output: >
+    Structured analysis in markdown format containing:
+    - Competitor matrix table
+    - Pricing comparison table
+    - SWOT analysis
+    - Market size estimates with methodology
+    - Top 5 market trends
+
+strategy_task:
+  description: >
+    Based on the market analysis, create a comprehensive GTM plan:
+
+    Analysis: {market_analysis}
+    Target Market: AI coding tools for enterprise development teams
+
+    The GTM plan must include:
+    1. Ideal Customer Profiles (ICPs) - minimum 3 detailed personas
+    2. Value Proposition Canvas
+    3. Competitive Positioning Statement
+    4. Messaging Framework (by persona)
+    5. Channel Strategy (acquisition channels ranked by expected ROI)
+    6. Pricing Strategy recommendation
+    7. 90-Day Launch Plan (week-by-week)
+    8. Success Metrics and KPIs
+  expected_output: >
+    A complete GTM strategy document in markdown format, ready for
+    export to Google Docs. Must be actionable, specific, and include
+    timelines and measurable goals.

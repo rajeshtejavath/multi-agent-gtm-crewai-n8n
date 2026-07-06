@@ -1,0 +1,222 @@
+{
+  "name": "Multi-Agent GTM Planning Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-node",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "brief",
+              "name": "project_brief",
+              "value": "Research the AI coding tools market (Cursor, GitHub Copilot, Claude Code, Windsurf, Amazon CodeWhisperer). Create a GTM plan for launching a new AI pair programming tool targeting enterprise development teams with 50+ engineers.",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "set-brief",
+      "name": "Set Project Brief",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [470, 300]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a Head Planner - a senior strategy consultant who decomposes market research briefs into actionable plans. You must output valid JSON only."
+            },
+            {
+              "role": "user",
+              "content": "Analyze this project brief and create a research plan:\n\n{{ $json.project_brief }}\n\nOutput a JSON object with:\n- research_questions: array of 8-12 specific questions\n- competitors: array of objects with name and category\n- frameworks: array of analytical frameworks to apply\n- key_metrics: array of data points to collect"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.3,
+          "maxTokens": 2000
+        }
+      },
+      "id": "head-planner",
+      "name": "Head Planner Agent",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [690, 300],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a Market Research Specialist. Search for evidence on each research question. For each finding, provide: the fact, source URL, source title, and confidence (high/medium/low). Focus on official sources, industry reports, and reputable publications."
+            },
+            {
+              "role": "user",
+              "content": "Research plan from Head Planner:\n{{ $json.message.content }}\n\nFor each research question, provide 3+ findings with citations. Format as JSON array of findings with fields: topic, finding, source_url, source_title, confidence."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.2,
+          "maxTokens": 4000
+        }
+      },
+      "id": "research-agent",
+      "name": "Research Agent",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [910, 300],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a Market Analyst (former McKinsey). Synthesize research into structured frameworks. Create clear tables and matrices. Be data-driven and specific."
+            },
+            {
+              "role": "user",
+              "content": "Research evidence:\n{{ $json.message.content }}\n\nCreate:\n1. Competitor comparison matrix (table with features, pricing, target market, strengths, weaknesses)\n2. Pricing matrix showing all tiers\n3. SWOT analysis for the market opportunity\n4. Market sizing (TAM/SAM/SOM estimates)\n5. Top 5 market trends\n\nFormat as clean markdown with tables."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.3,
+          "maxTokens": 4000
+        }
+      },
+      "id": "analyst-agent",
+      "name": "Analyst Agent",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [1130, 300],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a GTM Strategy Director (VP of Marketing with 20+ product launches). Create actionable, specific go-to-market plans for developer tools."
+            },
+            {
+              "role": "user",
+              "content": "Market analysis:\n{{ $json.message.content }}\n\nCreate a complete GTM plan with:\n1. Executive Summary\n2. Ideal Customer Profiles (3 detailed personas)\n3. Value Proposition Canvas\n4. Competitive Positioning Statement\n5. Messaging Framework (by persona)\n6. Channel Strategy (ranked by ROI)\n7. Pricing Strategy\n8. 90-Day Launch Plan (week by week)\n9. Success Metrics & KPIs\n10. Budget Allocation\n\nFormat as a professional markdown document ready for stakeholder review."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.4,
+          "maxTokens": 4000
+        }
+      },
+      "id": "strategy-agent",
+      "name": "Strategy Agent",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [1350, 300],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "url": "https://docs.googleapis.com/v1/documents",
+        "authentication": "oAuth2",
+        "method": "POST",
+        "body": {
+          "json": {
+            "title": "GTM Plan - AI Coding Tools Market"
+          }
+        },
+        "options": {}
+      },
+      "id": "create-doc",
+      "name": "Create Google Doc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1570, 300],
+      "notes": "Creates Google Doc with the GTM plan. Configure OAuth2 credentials for Google Docs API."
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "log",
+              "name": "execution_log",
+              "value": "={{ JSON.stringify({ timestamp: new Date().toISOString(), status: 'completed', nodes_executed: 7 }) }}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "log-completion",
+      "name": "Log Completion",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1790, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[{"node": "Set Project Brief", "type": "main", "index": 0}]]
+    },
+    "Set Project Brief": {
+      "main": [[{"node": "Head Planner Agent", "type": "main", "index": 0}]]
+    },
+    "Head Planner Agent": {
+      "main": [[{"node": "Research Agent", "type": "main", "index": 0}]]
+    },
+    "Research Agent": {
+      "main": [[{"node": "Analyst Agent", "type": "main", "index": 0}]]
+    },
+    "Analyst Agent": {
+      "main": [[{"node": "Strategy Agent", "type": "main", "index": 0}]]
+    },
+    "Strategy Agent": {
+      "main": [[{"node": "Create Google Doc", "type": "main", "index": 0}]]
+    },
+    "Create Google Doc": {
+      "main": [[{"node": "Log Completion", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "meta": {
+    "instanceId": "capstone-project-gtm-workflow"
+  },
+  "tags": [
+    {"name": "multi-agent"},
+    {"name": "gtm-planning"},
+    {"name": "capstone"}
+  ]
+}
